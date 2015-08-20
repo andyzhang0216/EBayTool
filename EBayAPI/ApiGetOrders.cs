@@ -20,7 +20,6 @@ namespace EBayAPI
         {
             InitializeComponent();
         }
-
         #region Event
         private void ApiGetOrders_Load(object sender, EventArgs e)
         {

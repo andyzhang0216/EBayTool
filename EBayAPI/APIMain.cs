@@ -15,14 +15,16 @@ using System.Windows.Forms;
 
 namespace EBayAPI
 {
-    public partial class APIMain : Form
+    public partial class ApiMain : Form
     {
         public ApiContext apiContext;
-        public APIMain()
+        public ApiMain()
         {
             InitializeComponent();
             AddCommandToListBox("GetOrders", typeof(ApiGetOrders));
-
+            AddCommandToListBox("GetItem", typeof(ApiGetItem));
+            AddCommandToListBox("GetItemShipping", typeof(ApiGetItemShipping));
+            AddCommandToListBox("GetItemTransactions", typeof(ApiGetItemTransactions));
             SetFormStartPosition();
         }
 
@@ -92,7 +94,7 @@ namespace EBayAPI
         }
         private void BtnAccountSettings_Click(object sender, EventArgs e)
         {
-            APIAccount form = new APIAccount();
+            ApiAccount form = new ApiAccount();
             form.apiContext = apiContext;
             if (form.ShowDialog() == DialogResult.OK)
                 apiContext = form.apiContext;

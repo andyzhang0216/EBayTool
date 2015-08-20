@@ -41,9 +41,6 @@ namespace EBayAPI
         {
             TxtItemId.Text = a_itemId;
         }
-
-        #endregion
-
         private void BtnGetItem_Click(object sender, EventArgs e)
         {
             try
@@ -70,11 +67,106 @@ namespace EBayAPI
                 fetchedItem = apicall.GetItem(TxtItemId.Text);
 
                 TxtTitle.Text = fetchedItem.Title;
+                TxtCategory.Text = fetchedItem.PrimaryCategory.CategoryName;
+                TxtCategoryId.Text = fetchedItem.PrimaryCategory.CategoryID;
+
+                if (fetchedItem.SecondaryCategory != null)
+                {
+                    TxtCategory2.Text = fetchedItem.SecondaryCategory.CategoryName;
+                    TxtCategory2Id.Text = fetchedItem.BuyItNowPrice.Value.ToString();
+                }
+
+                TxtCurrentPrice.Text = fetchedItem.SellingStatus.CurrentPrice.Value.ToString();
+                TxtBuyItNowPrice.Text = fetchedItem.BuyItNowPrice.Value.ToString();
+                TxtBidCount.Text = fetchedItem.SellingStatus.BidCount.ToString();
+
+                if (fetchedItem.SellingStatus.HighBidder != null)
+                {
+                    TxtHighBidder.Text = fetchedItem.SellingStatus.HighBidder.UserID;
+                }
+
+                TxtStartTime.Text = fetchedItem.ListingDetails.StartTime.ToString();
+                TxtEndTime.Text = fetchedItem.ListingDetails.EndTime.ToString();
+                TxtQuantity.Text = fetchedItem.Quantity.ToString();
+                TxtQuantitySold.Text = fetchedItem.SellingStatus.QuantitySold.ToString();
+
+                TxtBestOfferCount.Text = "0";
+                TxtBestOfferEnabled.Text = "False";
+
+                if (fetchedItem.BestOfferDetails != null)
+                {
+                    TxtBestOfferCount.Text = fetchedItem.BestOfferDetails.BestOfferCount.ToString();
+                    TxtBestOfferEnabled.Text = fetchedItem.BestOfferDetails.BestOfferEnabled.ToString();
+                }
+
+                if (fetchedItem.PayPalEmailAddress != null)
+                {
+                    TxtPayPalEmailAddress.Text = fetchedItem.PayPalEmailAddress.ToString();
+                }
+
+                if (fetchedItem.ApplicationData != null)
+                {
+                    TxtApplicationData.Text = fetchedItem.ApplicationData.ToString();
+                }
+
+                if (fetchedItem.ProductListingDetails != null)
+                {
+                    TxtProductID.Text = fetchedItem.ProductListingDetails.ProductID;
+                }
+
+                TxtPictureURL.Text = "";
+                if (fetchedItem.PictureDetails != null)
+                {
+                    StringCollection pictureUrls = fetchedItem.PictureDetails.PictureURL;
+                    string pictureUrl = "";
+                    for (int i = 0; pictureUrls != null && i < pictureUrls.Count; i++)
+                    {
+                        pictureUrl += pictureUrls[i] + ",";
+                    }
+                    TxtPictureURL.Text = pictureUrl;
+                }
+                TxtSite.Text = fetchedItem.Site.ToString();
+
+                TxtListType.Text = fetchedItem.ListingType.ToString();
+                a_itemId = fetchedItem.ItemID;
+                LblItemIdResult.Text = "Item Id: " + fetchedItem.ItemID;
+
+                if (LblItemIdResult.Text.Length > 0)
+                {
+                    BtnRelistItem.Visible = true;
+                    BtnReviseItem.Visible = true;
+                    BtnEndItem.Visible = true;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        #endregion
+
+        private void BtnRelistItem_Click(object sender, EventArgs e)
+        {
+            ApiReListItem form = new ApiReListItem();
+            form.a_itemId = a_itemId;
+            form.apiContext = apiContext;
+            form.ShowDialog();
+        }
+
+        private void BtnReviseItem_Click(object sender, EventArgs e)
+        {
+            ApiReListItem form = new ApiReListItem();
+            form.a_itemId = a_itemId;
+            form.apiContext = apiContext;
+            form.ShowDialog();
+        }
+        private void BtnEndItem_Click(object sender, EventArgs e)
+        {
+            ApiEndItem form = new ApiEndItem();
+            form.a_itemId = a_itemId;
+            form.apiContext = apiContext;
+            form.ShowDialog();
         }
     }
 }

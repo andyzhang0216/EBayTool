@@ -2,7 +2,7 @@
 
 namespace EBayAPI
 {
-    partial class APIMain
+    partial class ApiMain
     {
         /// <summary>
         /// Required designer variable.

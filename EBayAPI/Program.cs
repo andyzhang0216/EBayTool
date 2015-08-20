@@ -16,7 +16,7 @@ namespace EBayAPI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new APIMain());
+            Application.Run(new ApiMain());
         }
     }
 }

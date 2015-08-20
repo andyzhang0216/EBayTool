@@ -16,10 +16,10 @@ using System.Xml;
 
 namespace EBayAPI
 {
-    public partial class APIAccount : Form
+    public partial class ApiAccount : Form
     {
         public ApiContext apiContext;
-        public APIAccount()
+        public ApiAccount()
         {
             InitializeComponent();
             SetFormStartPosition();
@@ -101,7 +101,7 @@ namespace EBayAPI
         }
         private bool ValidateApiAccount(ApiContext apiContext)
         {
-            ApiAccount acc = apiContext.ApiCredential.ApiAccount;
+            eBay.Service.Core.Sdk.ApiAccount acc = apiContext.ApiCredential.ApiAccount;
             if (acc == null || acc.Application.Length == 0 || acc.Certificate.Length == 0 || acc.Developer.Length == 0)
             {
                 return false;

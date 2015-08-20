@@ -53,11 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APIAccount.cs">
+    <Compile Include="ApiAccount.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="APIAccount.Designer.cs">
-      <DependentUpon>APIAccount.cs</DependentUpon>
+    <Compile Include="ApiAccount.Designer.cs">
+      <DependentUpon>ApiAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApiEndItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApiEndItem.Designer.cs">
+      <DependentUpon>ApiEndItem.cs</DependentUpon>
     </Compile>
     <Compile Include="ApiGetItem.cs">
       <SubType>Form</SubType>
@@ -65,31 +71,70 @@
     <Compile Include="ApiGetItem.Designer.cs">
       <DependentUpon>ApiGetItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApiGetItemShipping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApiGetItemShipping.Designer.cs">
+      <DependentUpon>ApiGetItemShipping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApiGetItemTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApiGetItemTransactions.Designer.cs">
+      <DependentUpon>ApiGetItemTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApiGetOrders.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ApiGetOrders.Designer.cs">
       <DependentUpon>ApiGetOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="APIMain.cs">
+    <Compile Include="ApiMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="APIMain.Designer.cs">
-      <DependentUpon>APIMain.cs</DependentUpon>
+    <Compile Include="ApiMain.Designer.cs">
+      <DependentUpon>ApiMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApiReListItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApiReListItem.Designer.cs">
+      <DependentUpon>ApiReListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApiReviseItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApiReviseItem.Designer.cs">
+      <DependentUpon>ApiReviseItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="APIAccount.resx">
-      <DependentUpon>APIAccount.cs</DependentUpon>
+    <EmbeddedResource Include="ApiAccount.resx">
+      <DependentUpon>ApiAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApiEndItem.resx">
+      <DependentUpon>ApiEndItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApiGetItem.resx">
       <DependentUpon>ApiGetItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ApiGetItemShipping.resx">
+      <DependentUpon>ApiGetItemShipping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApiGetItemTransactions.resx">
+      <DependentUpon>ApiGetItemTransactions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApiGetOrders.resx">
       <DependentUpon>ApiGetOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="APIMain.resx">
-      <DependentUpon>APIMain.cs</DependentUpon>
+    <EmbeddedResource Include="ApiMain.resx">
+      <DependentUpon>ApiMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApiReListItem.resx">
+      <DependentUpon>ApiReListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApiReviseItem.resx">
+      <DependentUpon>ApiReviseItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

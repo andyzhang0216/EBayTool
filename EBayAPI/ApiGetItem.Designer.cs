@@ -160,6 +160,7 @@
             this.BtnEndItem.TabIndex = 91;
             this.BtnEndItem.Text = "EndItem ...";
             this.BtnEndItem.Visible = false;
+            this.BtnEndItem.Click += new System.EventHandler(this.BtnEndItem_Click);
             // 
             // BtnReviseItem
             // 
@@ -169,6 +170,7 @@
             this.BtnReviseItem.TabIndex = 90;
             this.BtnReviseItem.Text = "ReviseItem ...";
             this.BtnReviseItem.Visible = false;
+            this.BtnReviseItem.Click += new System.EventHandler(this.BtnReviseItem_Click);
             // 
             // lblApplicationData
             // 
@@ -520,6 +522,7 @@
             this.BtnRelistItem.TabIndex = 42;
             this.BtnRelistItem.Text = "RelistItem ...";
             this.BtnRelistItem.Visible = false;
+            this.BtnRelistItem.Click += new System.EventHandler(this.BtnRelistItem_Click);
             // 
             // BtnGetItem
             // 
