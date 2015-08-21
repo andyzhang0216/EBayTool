@@ -53,15 +53,8 @@ namespace EBayAPI
                 LstOrders.Items.Clear();
                 GetOrdersCall apicall = new GetOrdersCall(apiContext);
                 TimeFilter fltr = new TimeFilter();
-
-                if (ChkStartFrom.Checked)
-                {
-                    fltr.TimeFrom = DatePickStartFrom.Value;
-                }
-                if (ChkStartTo.Checked)
-                {
-                    fltr.TimeTo = DatePickStartTo.Value;
-                }
+                fltr.TimeFrom = DatePickStartFrom.Value;
+                fltr.TimeTo = DatePickStartTo.Value;
 
                 OrderTypeCollection orders = apicall.GetOrders(fltr, (TradingRoleCodeType)Enum.Parse(typeof(TradingRoleCodeType), CboRole.SelectedItem.ToString()), (OrderStatusCodeType)Enum.Parse(typeof(OrderStatusCodeType), CboStatus.SelectedItem.ToString()));
 
@@ -90,5 +83,10 @@ namespace EBayAPI
             }
         }
         #endregion
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
