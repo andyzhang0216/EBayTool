@@ -60,6 +60,20 @@ namespace EBayAPI
 
                 foreach (OrderType order in orders)
                 {
+                    string orderId = "EB" + order.OrderID.Split('-')[0];
+                    double orderAmount = order.Total.Value;
+
+                    string consignee = order.ShippingAddress.Name;
+                    //string consigneeAddress = order.ShippingAddress.AddressID;
+                    string consigneeTelephone = string.IsNullOrEmpty(order.ShippingAddress.Phone) ? order.ShippingAddress.Phone2 : order.ShippingAddress.Phone;
+
+                    string consigneeCountry_Code = order.ShippingAddress.Country.ToString();//  type
+                    string consigneeCountry = order.ShippingAddress.CountryName;
+                    string consigneeProvince = order.ShippingAddress.StateOrProvince;
+                    string consigneeCity = order.ShippingAddress.CityName;
+                    string consigneeZip = order.ShippingAddress.PostalCode;
+                    DateTime createTime = order.CreatedTime;
+                    
                     string[] listparams = new string[5];
                     listparams[0] = order.OrderID;
                     listparams[1] = order.OrderStatus.ToString();
@@ -86,6 +100,7 @@ namespace EBayAPI
 
         private void BtnExport_Click(object sender, EventArgs e)
         {
+
 
         }
     }
