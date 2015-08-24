@@ -1,6 +1,7 @@
 ﻿using eBay.Service.Call;
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
+using EBayAPI.Entry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace EBayAPI
     public partial class ApiGetOrders : Form
     {
         public ApiContext apiContext;
+        public Dictionary<string, object> orderDic;
         public ApiGetOrders()
         {
             InitializeComponent();
@@ -50,6 +52,7 @@ namespace EBayAPI
         {
             try
             {
+                orderDic = new Dictionary<string, object>();
                 LstOrders.Items.Clear();
                 GetOrdersCall apicall = new GetOrdersCall(apiContext);
                 TimeFilter fltr = new TimeFilter();
@@ -60,35 +63,45 @@ namespace EBayAPI
 
                 foreach (OrderType order in orders)
                 {
-                    string orderId = "EB" + order.OrderID.Split('-')[0];
-                    double orderAmount = order.Total.Value;
-
-                    string consignee = order.ShippingAddress.Name;
-                    //string consigneeAddress = order.ShippingAddress.AddressID;
-                    string consigneeTelephone = string.IsNullOrEmpty(order.ShippingAddress.Phone) ? order.ShippingAddress.Phone2 : order.ShippingAddress.Phone;
-
-                    string consigneeCountry_Code = order.ShippingAddress.Country.ToString();//  type
-                    string consigneeCountry = order.ShippingAddress.CountryName;
-                    string consigneeProvince = order.ShippingAddress.StateOrProvince;
-                    string consigneeCity = order.ShippingAddress.CityName;
-                    string consigneeZip = order.ShippingAddress.PostalCode;
-                    DateTime createTime = order.CreatedTime;
-                    
+                    OCOrder o = new OCOrder();
                     string[] listparams = new string[5];
                     listparams[0] = order.OrderID;
                     listparams[1] = order.OrderStatus.ToString();
-                    listparams[2] = order.CreatingUserRole.ToString();
-                    listparams[3] = order.AmountSaved.Value.ToString();
+                    listparams[2] = order.AmountSaved.Value.ToString();
                     string[] itemids = new string[order.TransactionArray.Count];
                     int index = 0;
                     foreach (TransactionType trans in order.TransactionArray)
                     {
                         itemids[index] = trans.Item.ItemID;
+                        o.goods = new OCGoods() { goodsName = trans.Item.Title };
                         index++;
                     }
-                    listparams[4] = string.Join(", ", itemids);
+                    listparams[3] = string.Join(", ", itemids);
                     ListViewItem vi = new ListViewItem(listparams);
                     LstOrders.Items.Add(vi);
+
+
+                    if (order.OrderID.Contains('-'))
+                    {
+                        o.orderNo = "EB" + order.OrderID.Split('-')[1];
+                    }
+                    else
+                    {
+                        o.orderNo = "EB" + order.OrderID;
+                    }
+                    o.orderAmount = order.Total.Value;
+                    o.consignee = order.ShippingAddress.Name;
+                    o.consigneeAddress = string.IsNullOrEmpty(order.ShippingAddress.Street) ? string.IsNullOrEmpty(order.ShippingAddress.Street1) ? order.ShippingAddress.Street2 : order.ShippingAddress.Street1 : order.ShippingAddress.Street;
+                    o.consigneeTelephone = string.IsNullOrEmpty(order.ShippingAddress.Phone) ? order.ShippingAddress.Phone2 : order.ShippingAddress.Phone;
+                    string consigneeCountry_Code = order.ShippingAddress.Country.ToString();//  type
+                    o.consigneeCountry = order.ShippingAddress.CountryName;
+                    o.consigneeProvince = order.ShippingAddress.StateOrProvince;
+                    o.consigneeCity = order.ShippingAddress.CityName;
+                    o.consigneeZip = order.ShippingAddress.PostalCode;
+                    o.createTime = order.CreatedTime;
+                    o.acttime = DateTime.Now;
+
+                    orderDic.Add(order.OrderID, o);
                 }
             }
             catch (Exception ex)
@@ -97,11 +110,15 @@ namespace EBayAPI
             }
         }
         #endregion
-
         private void BtnExport_Click(object sender, EventArgs e)
         {
-
-
+            List<OCOrder> list = new List<OCOrder>();
+            foreach (ListViewItem i in this.LstOrders.CheckedItems)
+            {
+                list.Add(orderDic[i.Text] as OCOrder);
+            }
+            ExportSql export = new ExportSql();
+            export.ExportEbayOrder(list);
         }
     }
 }

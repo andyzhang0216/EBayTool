@@ -71,6 +71,10 @@
     <Compile Include="ApiMain.Designer.cs">
       <DependentUpon>ApiMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entry\OCGoods.cs" />
+    <Compile Include="Entry\OCLogistics.cs" />
+    <Compile Include="Entry\OCOrder.cs" />
+    <Compile Include="ExportSql.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities.cs" />

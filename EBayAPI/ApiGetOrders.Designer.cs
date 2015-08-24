@@ -34,7 +34,6 @@
             this.LstOrders = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ClmSaved = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LblOrders = new System.Windows.Forms.Label();
@@ -87,7 +86,6 @@
             this.LstOrders.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3,
             this.ClmSaved,
             this.columnHeader4});
             this.LstOrders.GridLines = true;
@@ -107,11 +105,6 @@
             // 
             this.columnHeader2.Text = "Status";
             this.columnHeader2.Width = 75;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Creator";
-            this.columnHeader3.Width = 84;
             // 
             // ClmSaved
             // 
@@ -263,7 +256,6 @@
         private System.Windows.Forms.ListView LstOrders;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader ClmSaved;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.Button BtnExport;
